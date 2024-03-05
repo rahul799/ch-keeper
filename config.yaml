@@ -1,0 +1,144 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: clickhouse-config-01
+data:
+  keeper_config.xml: |
+    <clickhouse>
+        <logger>
+            <level>trace</level>
+                <log>/var/log/clickhouse-keeper/clickhouse-keeper.log</log>
+                <errorlog>/var/log/clickhouse-keeper/clickhouse-keeper.err.log</errorlog>
+            <count>3</count>
+        </logger>
+        <listen_host>0.0.0.0</listen_host>
+        <keeper_server>
+            <tcp_port>9181</tcp_port>
+            <server_id>1</server_id>
+            <log_storage_path>/var/lib/clickhouse/coordination/log</log_storage_path>
+            <snapshot_storage_path>/var/lib/clickhouse/coordination/snapshots</snapshot_storage_path>
+            <raft_configuration>
+                <server>
+                    <id>1</id>
+                    <hostname>clickhouse-keeper-01.clickhouse.svc.cluster.local</hostname>
+                    <port>9234</port>
+                    <can_become_leader>true</can_become_leader>
+                    <start_as_follower>true</start_as_follower>
+                    <priority>1</priority>     
+                </server>
+                <server>
+                    <id>2</id>
+                    <hostname>clickhouse-keeper-02.clickhouse.svc.cluster.local</hostname>
+                    <port>9234</port>
+                    <can_become_leader>true</can_become_leader>
+                    <start_as_follower>true</start_as_follower>
+                    <priority>2</priority>  
+                </server>
+                <server>
+                    <id>3</id>
+                    <hostname>clickhouse-keeper-03.clickhouse.svc.cluster.local</hostname>
+                    <port>9234</port>
+                    <can_become_leader>true</can_become_leader>
+                    <start_as_follower>false</start_as_follower>
+                    <priority>3</priority>  
+                </server>
+            </raft_configuration>
+        </keeper_server>
+    </clickhouse>
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: clickhouse-config-02
+data:
+  keeper-config.xml: |
+    <clickhouse>
+        <logger>
+            <level>trace</level>
+                <log>/var/log/clickhouse-keeper/clickhouse-keeper.log</log>
+                <errorlog>/var/log/clickhouse-keeper/clickhouse-keeper.err.log</errorlog>
+            <count>3</count>
+        </logger>
+        <listen_host>0.0.0.0</listen_host>
+        <keeper_server>
+            <tcp_port>9181</tcp_port>
+            <server_id>2</server_id>
+            <log_storage_path>/var/lib/clickhouse/coordination/log</log_storage_path>
+            <snapshot_storage_path>/var/lib/clickhouse/coordination/snapshots</snapshot_storage_path>
+            <raft_configuration>
+                <server>
+                    <id>1</id>
+                    <hostname>clickhouse-keeper-01.clickhouse.svc.cluster.local</hostname>
+                    <port>9234</port>
+                    <can_become_leader>true</can_become_leader>
+                    <start_as_follower>true</start_as_follower>
+                    <priority>1</priority>  
+                </server>
+                <server>
+                    <id>2</id>
+                    <hostname>clickhouse-keeper-02.clickhouse.svc.cluster.local</hostname>
+                    <port>9234</port>
+                    <can_become_leader>true</can_become_leader>
+                    <start_as_follower>true</start_as_follower>
+                    <priority>2</priority>  
+                </server>
+                <server>
+                    <id>3</id>
+                    <hostname>clickhouse-keeper-03.clickhouse.svc.cluster.local</hostname>
+                    <port>9234</port>
+                    <can_become_leader>true</can_become_leader>
+                    <start_as_follower>false</start_as_follower>
+                    <priority>3</priority>  
+                </server>
+            </raft_configuration>
+        </keeper_server>
+    </clickhouse>
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: clickhouse-config-03
+data:
+  keeper-config.xml: |
+    <clickhouse>
+        <logger>
+            <level>trace</level>
+                <log>/var/log/clickhouse-keeper/clickhouse-keeper.log</log>
+                <errorlog>/var/log/clickhouse-keeper/clickhouse-keeper.err.log</errorlog>
+            <count>3</count>
+        </logger>
+        <listen_host>0.0.0.0</listen_host>
+        <keeper_server>
+            <tcp_port>9181</tcp_port>
+            <server_id>3</server_id>
+            <log_storage_path>/var/lib/clickhouse/coordination/log</log_storage_path>
+            <snapshot_storage_path>/var/lib/clickhouse/coordination/snapshots</snapshot_storage_path>
+            <raft_configuration>
+                <server>
+                    <id>1</id>
+                    <hostname>clickhouse-keeper-01.clickhouse.svc.cluster.local</hostname>
+                    <port>9234</port>
+                    <can_become_leader>true</can_become_leader>
+                    <start_as_follower>true</start_as_follower>
+                    <priority>1</priority>  
+                </server>
+                <server>
+                    <id>2</id>
+                    <hostname>clickhouse-keeper-02.clickhouse.svc.cluster.local</hostname>
+                    <port>9234</port>
+                    <can_become_leader>true</can_become_leader>
+                    <start_as_follower>true</start_as_follower>
+                    <priority>2</priority>  
+                </server>
+                <server>
+                    <id>3</id>
+                    <hostname>clickhouse-keeper-03.clickhouse.svc.cluster.local</hostname>
+                    <port>9234</port>
+                    <can_become_leader>true</can_become_leader>
+                    <start_as_follower>false</start_as_follower>
+                    <priority>3</priority>  
+                </server>
+            </raft_configuration>
+        </keeper_server>
+    </clickhouse>
+---
